@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NutriVida - Consultoria Nutricional</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Reset e estilos gerais */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            line-height: 1.6;
+            color: #333;
+            background-color: #f9f9f9;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        section {
+            padding: 60px 0;
+        }
+        
+        h1, h2, h3 {
+            margin-bottom: 20px;
+            color: #2c7744;
+        }
+        
+        p {
+            margin-bottom: 15px;
+        }
+        
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: #2c7744;
+            color: white;
+            padding: 12px 30px;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        
+        .btn:hover {
+            background-color: #225e36;
+        }
+        
+        /* Header e Navegação */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #2c7744;
+            text-decoration: none;
+        }
+        
+        .logo span {
+            color: #f8c42f;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 25px;
+        }
+        
+        nav ul li a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        nav ul li a:hover {
+            color: #2c7744;
+        }
+        
+        .menu-toggle {
+            display: none;
+            font-size: 24px;
+            cursor: pointer;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1490645935967-10de6ba17061?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
+            color: white;
+            text-align: center;
+            padding: 150px 0 100px;
+        }
+        
+        .hero h1 {
+            font-size: 2.5rem;
+            color: white;
+            margin-bottom: 20px;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+        }
+        
+        /* Sobre */
+        .sobre {
+            background-color: white;
+        }
+        
+        .sobre-container {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+        }
+        
+        .sobre-texto {
+            flex: 1;
+        }
+        
+        .sobre-imagem {
+            flex: 1;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Serviços */
+        .servicos {
+            background-color: #f2f8f4;
+            text-align: center;
+        }
+        
+        .servicos-intro {
+            max-width: 800px;
+            margin: 0 auto 40px;
+        }
+        
+        .servicos-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+        }
+        
+        .servico-card {
+            background-color: white;
+            border-radius: 10px;
+            padding: 30px;
+            flex: 1 1 300px;
+            max-width: 350px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s;
+        }
+        
+        .servico-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .servico-icon {
+            font-size: 40px;
+            color: #2c7744;
+            margin-bottom: 20px;
+        }
+        
+        /* Benefícios */
+        .beneficios {
+            background-color: white;
+        }
+        
+        .beneficios-lista {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: center;
+        }
+        
+        .beneficio-item {
+            flex: 1 1 250px;
+            max-width: 350px;
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .beneficio-icon {
+            font-size: 35px;
+            color: #f8c42f;
+            margin-bottom: 15px;
+        }
+        
+        /* Depoimentos */
+        .depoimentos {
+            background-color: #f2f8f4;
+            text-align: center;
+        }
+        
+        .depoimentos-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: center;
+        }
+        
+        .depoimento-card {
+            background-color: white;
+            border-radius: 10px;
+            padding: 30px;
+            flex: 1 1 300px;
+            max-width: 350px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            position: relative;
+        }
+        
+        .depoimento-texto {
+            font-style: italic;
+            margin-bottom: 20px;
+        }
+        
+        .depoimento-autor {
+            font-weight: bold;
+            color: #2c7744;
+        }
+        
+        .quote-icon {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 40px;
+            color: #f2f8f4;
+            z-index: 0;
+        }
+        
+        /* Contato */
+        .contato {
+            background-color: white;
+        }
+        
+        .contato-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+        }
+        
+        .contato-info {
+            flex: 1 1 300px;
+        }
+        
+        .contato-form {
+            flex: 1 1 400px;
+        }
+        
+        .info-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .info-icon {
+            font-size: 20px;
+            color: #2c7744;
+            margin-right: 15px;
+            width: 30px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+        
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        
+        .form-group textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: #2c7744;
+            color: white;
+            padding: 40px 0 20px;
+            text-align: center;
+        }
+        
+        .footer-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+            justify-content: space-between;
+            margin-bottom: 30px;
+        }
+        
+        .footer-col {
+            flex: 1 1 250px;
+        }
+        
+        .footer-col h3 {
+            color: white;
+            margin-bottom: 20px;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: white;
+            border-radius: 50%;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+        
+        .social-links a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+        
+        .copyright {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        /* Responsividade */
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+            
+            nav ul {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background-color: white;
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+                padding: 20px;
+            }
+            
+            nav ul.active {
+                display: flex;
+            }
+            
+            nav ul li {
+                margin: 10px 0;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .sobre-container {
+                flex-direction: column;
+            }
+            
+            .contato-container {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <a href="#" class="logo">Nutri<span>Vida</span></a>
+            <div class="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#sobre">Sobre</a></li>
+                    <li><a href="#servicos">Serviços</a></li>
+                    <li><a href="#beneficios">Benefícios</a></li>
+                    <li><a href="#depoimentos">Depoimentos</a></li>
+                    <li><a href="#contato">Contato</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Transforme sua saúde através da alimentação</h1>
+            <p>Consultoria nutricional personalizada para ajudar você a alcançar seus objetivos de forma saudável e sustentável</p>
+            <a href="#contato" class="btn">Agende sua Consulta</a>
+        </div>
+    </section>
+
+    <!-- Sobre -->
+    <section id="sobre" class="sobre">
+        <div class="container">
+            <h2>Sobre a NutriVida</h2>
+            <div class="sobre-container">
+                <div class="sobre-texto">
+                    <p>A NutriVida nasceu da paixão por ajudar pessoas a transformarem suas vidas através de uma alimentação equilibrada e consciente. Com mais de 10 anos de experiência, nossa missão é proporcionar bem-estar e qualidade de vida através de orientação nutricional personalizada.</p>
+                    <p>Acreditamos que cada pessoa é única, com necessidades, objetivos e rotinas diferentes. Por isso, desenvolvemos planos alimentares individualizados, que se adaptam ao seu estilo de vida e preferências alimentares.</p>
+                    <p>Nossa abordagem vai além da prescrição de dietas. Educamos e empoderamos nossos clientes para fazerem escolhas alimentares conscientes que resultem em benefícios duradouros para a saúde.</p>
+                </div>
+                <div class="sobre-imagem">
+                    <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Consultório NutriVida">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Serviços -->
+    <section id="servicos" class="servicos">
+        <div class="container">
+            <h2>Nossos Serviços</h2>
+            <div class="servicos-intro">
+                <p>Oferecemos uma variedade de serviços para atender suas necessidades específicas. Cada plano é cuidadosamente elaborado para garantir resultados eficazes e duradouros.</p>
+            </div>
+            <div class="servicos-grid">
+                <div class="servico-card">
+                    <div class="servico-icon">
+                        <i class="fas fa-user-md"></i>
+                    </div>
+                    <h3>Consulta Presencial</h3>
+                    <p>Atendimento individualizado em nosso consultório, com avaliação completa e elaboração de plano alimentar personalizado.</p>
+                </div>
+                <div class="servico-card">
+                    <div class="servico-icon">
+                        <i class="fas fa-laptop-medical"></i>
+                    </div>
+                    <h3>Consulta Online</h3>
+                    <p>Atendimento por videoconferência para sua comodidade, com todo suporte necessário para acompanhamento à distância.</p>
+                </div>
+                <div class="servico-card">
+                    <div class="servico-icon">
+                        <i class="fas fa-utensils"></i>
+                    </div>
+                    <h3>Plano Alimentar Personalizado</h3>
+                    <p>Elaboração de cardápios específicos para suas necessidades, preferências e objetivos, com receitas saborosas e práticas.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefícios -->
+    <section id="beneficios" class="beneficios">
+        <div class="container">
+            <h2>Vantagens e Benefícios</h2>
+            <div class="beneficios-lista">
+                <div class="beneficio-item">
+                    <div class="beneficio-icon">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <h3>Saúde Melhorada</h3>
+                    <p>Melhore seus indicadores de saúde, previna doenças e aumente sua qualidade de vida através da alimentação.</p>
+                </div>
+                <div class="beneficio-item">
+                    <div class="beneficio-icon">
+                        <i class="fas fa-balance-scale"></i>
+                    </div>
+                    <h3>Peso Equilibrado</h3>
+                    <p>Alcance e mantenha seu peso ideal de forma saudável, sem dietas restritivas ou efeito sanfona.</p>
+                </div>
+                <div class="beneficio-item">
+                    <div class="beneficio-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3>Mais Energia</h3>
+                    <p>Tenha mais disposição no seu dia a dia com uma alimentação que fornece energia de forma equilibrada.</p>
+                </div>
+                <div class="beneficio-item">
+                    <div class="beneficio-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Imunidade Fortalecida</h3>
+                    <p>Fortaleça seu sistema imunológico com nutrientes específicos que aumentam sua resistência.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Depoimentos -->
+    <section id="depoimentos" class="depoimentos">
+        <div class="container">
+            <h2>O que Nossos Clientes Dizem</h2>
+            <div class="depoimentos-container">
+                <div class="depoimento-card">
+                    <div class="quote-icon">
+                        <i class="fas fa-quote-right"></i>
+                    </div>
+                    <p class="depoimento-texto">"Perdi 12kg em 4 meses com a NutriVida. O plano alimentar era fácil de seguir e se adaptava perfeitamente à minha rotina. Melhorei não apenas meu peso, mas minha saúde como um todo!"</p>
+                    <p class="depoimento-autor">- Maria Silva</p>
+                </div>
+                <div class="depoimento-card">
+                    <div class="quote-icon">
+                        <i class="fas fa-quote-right"></i>
+                    </div>
+                    <p class="depoimento-texto">"Como atleta, precisava de um acompanhamento específico para melhorar meu desempenho. A NutriVida elaborou um plano perfeito para minhas necessidades e hoje tenho muito mais energia para treinar."</p>
+                    <p class="depoimento-autor">- João Santos</p>
+                </div>
+                <div class="depoimento-card">
+                    <div class="quote-icon">
+                        <i class="fas fa-quote-right"></i>
+                    </div>
+                    <p class="depoimento-texto">"Tenho problemas de saúde que exigem uma dieta restritiva. A nutricionista da NutriVida conseguiu criar um cardápio saboroso que atende minhas limitações. Finalmente posso comer com prazer novamente!"</p>
+                    <p class="depoimento-autor">- Ana Oliveira</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contato -->
+    <section id="contato" class="contato">
+        <div class="container">
+            <h2>Entre em Contato</h2>
+            <div class="contato-container">
+                <div class="contato-info">
+                    <p>Estamos prontos para ajudar você a alcançar seus objetivos. Entre em contato por qualquer um dos canais abaixo ou preencha o formulário ao lado.</p>
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <p>Rua das Flores, 123 - Centro, São Paulo - SP</p>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <p>(11) 9999-8888</p>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <p>contato@nutrivida.com.br</p>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <p>Segunda a Sexta: 8h às 18h<br>Sábado: 8h às 12h</p>
+                    </div>
+                </div>
+                <div class="contato-form">
+                    <form>
+                        <div class="form-group">
+                            <label for="nome">Nome Completo</label>
+                            <input type="text" id="nome" name="nome" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">E-mail</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="telefone">Telefone</label>
+                            <input type="tel" id="telefone" name="telefone">
+                        </div>
+                        <div class="form-group">
+                            <label for="mensagem">Mensagem</label>
+                            <textarea id="mensagem" name="mensagem" required></textarea>
+                        </div>
+                        <button type="submit" class="btn">Enviar Mensagem</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-col">
+                    <h3>NutriVida</h3>
+                    <p>Transformando vidas através da alimentação saudável.</p>
+                </div>
+                <div class="footer-col">
+                    <h3>Links Rápidos</h3>
+                    <p><a href="#sobre" style="color: white;">Sobre</a></p>
+                    <p><a href="#servicos" style="color: white;">Serviços</a></p>
+                    <p><a href="#contato" style="color: white;">Contato</a></p>
+                </div>
+                <div class="footer-col">
+                    <h3>Redes Sociais</h3>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-whatsapp"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 NutriVida - Todos os direitos reservados</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Menu toggle para mobile
+        document.querySelector('.menu-toggle').addEventListener('click', function() {
+            document.querySelector('nav ul').classList.toggle('active');
+        });
+        
+        // Fechar menu ao clicar em um link
+        document.querySelectorAll('nav ul li a').forEach(link => {
+            link.addEventListener('click', function() {
+                document.querySelector('nav ul').classList.remove('active');
+            });
+        });
+    </script>
+</body>
+</html>
